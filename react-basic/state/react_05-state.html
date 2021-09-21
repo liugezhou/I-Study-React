@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>State</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script type="text/babel">
+    class Weather extends React.Component {
+      // 构造器调用几次？----1次
+      constructor(props) {
+        console.log('constructor')
+        super(props)
+        //初始化状态
+        this.state = {
+          isHot: true,
+          wind: '微风'
+        }
+      }
+      // render调用几次？----n+1次
+      render() {
+        // 读取状态
+        console.log('render')
+        const { isHot, wind } = this.state
+        return <h1 ref="test" onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'} {wind}</h1>
+      }
+      changeWeather = () => {
+        // 由于changeWeather作为onClick的回调，不是通过实例回调的，是直接调用的
+        // 类中的方法默认开启了局部的严格模式，所以changeWeather中的this为undefined
+        // console.log(this)
+        const isHot = !this.state.isHot
+        // 严重注意：状态(state)不可直接更改，必须借助内置API更改setState()
+        // 且更新是一种合并，不是直接替换
+        this.setState({
+          isHot
+        })
+
+      }
+    }
+    ReactDOM.render(<Weather />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

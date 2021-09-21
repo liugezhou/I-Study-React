@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>生命周期-新</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script type="text/babel">
+     class Count extends React.Component {
+      constructor(props) {
+        console.log('Count-constructor')
+        super(props)
+        this.state = { count: 0 }
+      }
+
+      add = () => {
+        const { count } = this.state
+        this.setState({
+          count: count + 1
+        })
+      }
+      death = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('app'))
+      }
+      force = () => {
+        this.forceUpdate()
+      }
+      componentDidMount() {
+        console.log('Count-componentDidMount')
+      }
+      componentDidUpdate(prevProps,prevState,snapshotValue) {
+        console.log(prevProps,prevState,snapshotValue)
+        console.log('Count-componentDidUpdate')
+      }
+      static getDerivedStateFromProps(props,state){
+        console.log(props)
+        console.log('getDerivedStateFromProps')
+        return null
+      }
+      //更新之前获取快照
+      getSnapshotBeforeUpdate(){
+        console.log('getSnapshotBeforeUpdate')
+        return 'obj'
+      }
+      render() {
+        console.log('Count-render')
+        const { count } = this.state
+        return (
+          <div>
+            <h2>当前求个为{count}</h2>
+            <button onClick={this.add}>点我 + 1</button>
+            <button onClick={this.death}>卸载组件</button>
+            <button onClick={this.force}>不更改任何</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Count count={100}/>, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

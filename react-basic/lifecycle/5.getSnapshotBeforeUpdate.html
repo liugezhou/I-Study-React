@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>getSnapshotBeforeUpdate</title>
+    <style>
+      .list {
+        width: 200px;
+        height: 150px;
+        background-color: aquamarine;
+        overflow: auto;
+      }
+      .news {
+        height: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="../js/babel.js"></script>
+    <script type="text/babel">
+      class NewsList extends React.Component {
+        state = {
+          newArr: [],
+        };
+        componentDidMount() {
+          setInterval(() => {
+            const { newArr } = this.state;
+            const news = '新闻' + (newArr.length + 1);
+            this.setState({
+              newArr: [news, ...newArr],
+            });
+          }, 1000);
+        }
+        getSnapshotBeforeUpdate() {
+          return this.refs.list.scrollHeight
+        }
+        componentDidUpdate(prevProps,prevState,height){
+          this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+        }
+        render() {
+          console.log('render');
+          return (
+            <div className="list" ref="list">
+              {this.state.newArr.map((i, index) => {
+                return (
+                  <div className="news" key={index}>
+                    {i}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(<NewsList />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

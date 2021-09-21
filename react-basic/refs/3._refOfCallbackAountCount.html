@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>回调函数形式refs的次数问题</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script type="text/babel">
+    //创建组件
+    class Demo extends React.Component {
+      state = {
+        isHot:true
+      }
+      click1 = () => {
+        const { input1 } = this
+        console.log(input1.value)
+      }
+      blur = (e) => {
+        console.log(e.target.value)
+      }
+      change=()=>{
+        this.setState({
+          isHot:!this.state.isHot
+        })
+      }
+      saveInput =(c)=>{
+        this.input1 = c
+        console.log('c:',c)
+      }
+      render() {
+        const {isHot}= this.state
+        return (
+          <div>
+            <h2>今天天气很{isHot?'炎热':'凉爽'}</h2>
+            <button onClick={this.change}>切换天气</button>
+            <br/>
+            {/*<input ref={c => {this.input1 = c;console.log('c:',c)}} />*/}
+            <input ref={this.saveInput} />
+            <button onClick={this.click1}>点击弹出内容</button>
+            <input placeholder="失去焦点显示弹出内容" onBlur={this.blur} />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById("app"))
+  </script>
+</body>
+
+</html>

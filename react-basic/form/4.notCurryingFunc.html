@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>函数不使用柯里化</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script type="text/babel">
+
+    class Login extends React.Component {
+      state = {
+        username: '',
+        password: ''
+      }
+      handleSubmit = (e) => {
+        e.preventDefault()
+        alert(`用户名是${this.state.username},密码是${this.state.password}`)
+        return false;
+      }
+      saveFormData = (dataType,event) => {
+          this.setState({
+            [dataType]:event.target.value
+          })
+      }
+      render() {
+        return (
+          <form onSubmit={this.handleSubmit}>
+            用户名：<input type="text" name="useranme" onChange={event=>this.saveFormData('username',event)} />
+            密码：<input type="password" name="password"onChange={event=>this.saveFormData('password',event)} />
+            <button>登录</button>
+          </form>
+        )
+      }
+    }
+    ReactDOM.render(<Login />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

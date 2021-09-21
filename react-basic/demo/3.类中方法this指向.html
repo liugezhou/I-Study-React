@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Person{
+      constructor(name,age){
+        this.name = name;
+        this.age = age;
+      }
+      speak(){
+        console.log(this)
+      }
+    }
+    const p = new Person('Tom',18);
+    const r =p.speak
+    console.log(r())
+  </script>
+</body>
+</html>

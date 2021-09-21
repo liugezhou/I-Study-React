@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>事件处理</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script type="text/babel">
+    //创建组件
+    class Demo extends React.Component {
+      /*
+        1.通过onXxx属性指定事件处理函数(注意大小写)
+          React使用的是自定义(合成)事件，而不是使用原生DOM事件---为了更好的兼容性
+          React中的事件是通过事件委托方式处理的(委托给组件最外层的元素) ---  为了高效
+        2.通过event.target得到发生事件的DOM元素对象 -----不要过度使用ref
+      */
+      //创建ref容器
+      myRef = React.createRef()
+      click1 = () => {
+        alert(this.myRef.current.value)
+      }
+      blur = (e) => {
+        alert(e.target.value)
+      }
+      render() {
+        return (
+          <div>
+            <input ref={this.myRef} />
+            <button onClick={this.click1}>点击弹出内容</button>
+            <input onBlur={this.blur}/>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById("app"))
+  </script>
+</body>
+
+</html>

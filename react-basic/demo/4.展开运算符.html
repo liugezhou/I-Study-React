@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>展开运算符</title>
+</head>
+<body>
+  <script>
+    let arr1 = [1,3,5,7,9];
+    let arr2 = [2,4,6,8,10];
+    let arr3 = [...arr1,...arr2]
+    // console.log(...arr1)
+    // console.log(...arr3)
+    function sum(...number){
+      return number.reduce((a,b)=> a+b)
+    }
+    // console.log(sum(1,2,3,4))
+    let person = {
+      name:'Tom',
+      age:18
+    }
+    // console.log(...person)  --报错：展开运算符不能展开对象
+
+    // 构造字面量时使用展开语法
+    let person2 = {...person}  //深拷贝--与React不同，react中只可以在标签中这么使用，这是因为babel和react互相作用的结果
+    let person3 = {...person,name:'ZHOU',address:'Peking'}
+    person.name = 'TOM'
+    console.log('person2:',person2)
+    console.log('person3',person3)
+  </script>
+</body>
+</html>

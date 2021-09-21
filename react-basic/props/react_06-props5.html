@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>函数式组件使用Props</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="app2"></div>
+  <div id="app3"></div>
+  <div id="app4"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+  <script type="text/babel">
+    function Person(props) {
+      const { name, age, major } = props
+      return (
+        <ul>
+          <li>姓名：{name}</li>
+          <li>年龄：{age + 1}</li>
+          <li>主页：{major}</li>
+        </ul>
+      )
+    }
+    Person.propTypes = {
+        name:PropTypes.string.isRequired,
+        age:PropTypes.number,
+        major:PropTypes.string
+      }
+    Person.defaultProps = {
+      major:'Coding...........',
+      age:18
+    }
+      
+    // 渲染组件到页面
+    ReactDOM.render(<Person name='TomZhou' age={18}  />, document.getElementById('app2'))
+  </script>
+</body>
+
+</html>

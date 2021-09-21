@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>引出生命周期</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script type="text/babel">
+    //生命周期回调函数 <=> 生命周期钩子函数 <=> 生命周期函数 <=> 生命周期钩子
+    class Life extends React.Component {
+      state = {
+        opacity: 1
+      }
+      death = () => {
+        // 卸载组件
+        ReactDOM.unmountComponentAtNode(document.getElementById('app'))
+      }
+      // render调用的时机：初始化渲染，状态更新之后
+      render() {
+        console.log('render')
+        return (
+          <div>
+            <h2 style={{ opacity: this.state.opacity }}>学不会怎么办</h2>
+            <button onClick={this.death}>不活了</button>
+          </div>
+        )
+      }
+      // 组件挂载完毕
+      componentDidMount(){
+        console.log('componentDidMount')
+        this.timer = setInterval(() => {
+          let { opacity } = this.state
+          opacity -= 0.1
+          if (opacity <= 0) opacity = 1
+          this.setState({
+            opacity
+          })
+        }, 200);
+      }
+      componentWillUnmount(){
+        // 清除定时器
+        clearInterval(this.timer)
+      }
+    }
+    ReactDOM.render(<Life />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

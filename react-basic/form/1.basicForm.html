@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>表单数据收集--非受控组件[先用先取]</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script type="text/babel">
+  class Login extends React.Component{
+    name = React.createRef()
+    pass = React.createRef()
+    handleSubmit = (e)=>{
+      e.preventDefault()
+      const username =this.name.current.value
+      const password =this.pass.current.value
+      alert(`用户名是${username},密码是${password}`)
+      return false;
+    }
+    render(){
+      return (
+        <form onSubmit={this.handleSubmit}>
+          用户名：<input type="text" name="useranme" ref={this.name}/>
+          密码：<input type="password" name="password" ref={this.pass}/>
+          <button>登录</button>
+        </form>
+      )
+    }
+  }
+  ReactDOM.render(<Login/>,document.getElementById('app'))
+  </script>
+</body>
+</html>

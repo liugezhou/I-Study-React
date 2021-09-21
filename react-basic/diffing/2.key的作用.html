@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key的作用</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script type="text/babel">
+  /*
+    虚拟DOM中的key作用：
+    1. 当状态中的数据发生变化时，react会根据新数据生成新的虚拟DOM，随后React进行新虚拟DOM和旧虚拟DOM的diff比较
+    2. 旧虚拟DOM找到了与新虚拟DOM相同的key：
+          1)、若虚拟DOM中内容没有改变，直接使用之前的真实DOM
+          2)、若虚拟中DOM内容变了，则生成新的真实DOM，随后替换掉页面中之前的真实DOM
+      旧虚拟DOM中未找到新虚拟DOM相同的key：
+          生成新的真实DOM，随后渲染至页面。
+  */
+  class Person extends React.Component {
+    state = {
+      persons: [
+        {id:1,name:'章三',age:18},
+        {id:2,name:'里三',age:19}
+      ]
+    }
+    add = ()=>{
+      const {persons} = this.state 
+      const p = {
+        id:persons.length + 1,
+        name:'小王',
+        age:20
+      }
+      this.setState({
+        persons:[p,...persons]
+      })
+    }
+    render(){
+      return(
+        <div>
+          <h2>展示人员信息</h2>
+          <button onClick={this.add}>添加一个小王</button>
+          <h3>使用索引作为key</h3>
+          <ul>
+            {this.state.persons.map((item,index)=>{
+              return <li key={index}>{item.name}--{item.age} <input/></li>
+            })}  
+          </ul>
+          <h3>使用唯一标识作为key</h3>
+          <ul>
+            {this.state.persons.map((item,index)=>{
+              return <li key={item.id}>{item.name}--{item.age} <input/></li>
+            })}  
+          </ul>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<Person/>,document.getElementById('app'))
+  </script>
+</body>
+</html>

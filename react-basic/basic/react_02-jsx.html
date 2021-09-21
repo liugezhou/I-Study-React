@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>jsx 表达式练习</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="./js/react.development.js"></script>
+  <script src="./js/react-dom.js"></script>
+  <!-- Don't use this in production: -->
+  <script src="./js/babel.js"></script>
+  <script type="text/babel">
+    const data = ['Angular', 'React', 'Vue']
+    const VDOM = (
+      <div>
+        <h1>前端JS框架</h1>
+        <ul>
+          {
+            data.map((item,index)=>{
+               return <li key={index}>{item}</li>
+            })
+          }
+        </ul>
+      </div>
+    )
+    ReactDOM.render(VDOM, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

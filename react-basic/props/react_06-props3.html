@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>对Props进行限制</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="app2"></div>
+  <div id="app3"></div>
+  <div id="app4"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.js"></script>
+  <script src="../js/babel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+  <script type="text/babel">
+    class Person extends React.Component {
+      static propTypes = {
+        name:PropTypes.string.isRequired,
+        age:PropTypes.number,
+        major:PropTypes.string,
+        speak:PropTypes.func
+      }
+      static defaultProps = {
+        major:'Coding...........',
+        age:20
+      }
+      render() {
+        const {name,age,major} = this.props
+        // props是只读的
+        // this.props.name = 'jack'   此行代码会报错，不能修改props属性的值
+        return (
+          <ul>
+            <li>姓名：{name}</li>
+            <li>年龄：{age + 1}</li>
+            <li>主页：{major}</li>
+          </ul>
+        )
+      }
+    }
+    
+    // 渲染组件到页面
+    ReactDOM.render(<Person name='Tom' age={12} speak={speak}/>, document.getElementById('app'))
+    ReactDOM.render(<Person name='TomZhou'/>, document.getElementById('app2'))
+    const p ={name:'Tom',age:18,major:'Coding'}
+    ReactDOM.render(<Person {...p}/>, document.getElementById('app3'))
+    function speak(){
+      console.log(1)
+    }
+  </script>
+</body>
+
+</html>

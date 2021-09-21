@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>class的基本知识</title>
+</head>
+<body>
+  <script>
+    // 创建一个Person类
+    class Person{
+      constructor(name,age){
+        this.name = name;
+        this.age = age
+      }
+      code(){
+        // code的方法放在了--类的原型对象上，供实例使用
+        // 通过Person实例调用code时，code中的this就是Person的实例
+        // 使用call调用时，为绑定的对象
+        console.log(`I am ${this.name},age:${this.age},I am coding`)
+      }
+    }
+    // 创建一个Student类，继承Person
+    class Student extends Person{
+      constructor(name,age,grade){
+        super(name,age);
+        this.grade = grade
+      }
+      code(){
+        // code的方法放在了--类的原型对象上，供实例使用
+        // 通过Student实例调用code时，code中的this就是Student的实例
+        console.log(`I am ${this.name},and my age is${this.age},my class is ${this.grade} I am coding`)
+      }
+    }
+    // 创建一个实例对象
+    // const t = new Person('Tom',18)
+    // const p = new Person('Pom',28)
+    // t.code()
+    // p.code()
+    const s = new Student('Tom',108,28)
+    // console.log(s)
+    s.code()
+
+
+    class Car{
+      constructor(name,price){
+        this.name = name;
+        this.price = price;
+      }
+      //类中可以直接写赋值语句：给Car添加一个wheel属性.
+      wheel = 4
+    }
+    const car1 = new Car('宝马',199)
+    console.log(car1)
+  // </script>
+</body>
+</html>
