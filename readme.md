@@ -56,3 +56,8 @@ module.exports = function(app){
   )
 }
 ```
+
+##### 004--Github搜索案例
+> 后端服务使用 react-http中的server.js服务。  
+> 本实例主要是练习axios的请求以及父子组件传值、三元运算符使用等。 
+> 通过输入 Github的英文名称进行User的头像搜索、点击跳转。 
