@@ -101,26 +101,26 @@ search = ()=>{
 ##### 007--React路由
 > 路由分类--后端路由[key:value(function)]、前端路由[key:value(component)]。  
 > + 需要使用：yarn add react-router-dom   
-> + <BrowserRouter><App/></BrowserRouter>   
-> + <HashRouter><App/></HashRouter>   
-> + <Link to="/home"> || <NavLink activeClassName="liugezhou"> || <MyNavlink “标签题内容是一个特殊的属性”/>
-> + <Route path="/about" component={About} />
+> + `<BrowserRouter><App/></BrowserRouter>`   
+> + `<HashRouter><App/></HashRouter>`   
+> + `<Link to="/home"> || <NavLink activeClassName="liugezhou"> || <MyNavlink “标签题内容是一个特殊的属性”/>` 
+> + `<Route path="/about" component={About} />`
 
 > 路由组件与一般组件  
-> + 写法不同：一般组件<Demo/>  路由组件：<Route path="/demo" component={Demo}>  
+> + 写法不同：一般组件`<Demo/>`  路由组件：`<Route path="/demo" component={Demo}>`  
 > + 存放位置不同：一般组件:components,路由组件:pages  
 > + 接收到的props不同： 一般组件为标签传递，路由组件主要接收三个固定属性：history/location/match  
 >  history:
->   go: ƒ go(n)
->   goBack: ƒ goBack()
->   goForward: ƒ goForward()
->   push: ƒ push(path, state)
->   replace: ƒ replace(path, state)
-> location:
->   pathname: "/about"
->   search: ""
->   state: undefined
-> match:
->   params: {}
->   path: "/about"
->   url: "/about"
+>   go: ƒ go(n)   
+>   goBack: ƒ goBack()  
+>   goForward: ƒ goForward()  
+>   push: ƒ push(path, state)  
+>   replace: ƒ replace(path, state)  
+> location: 
+>   pathname: "/about"  
+>   search: ""  
+>   state: undefined  
+> match:  
+>   params: {}  
+>   path: "/about"  
+>   url: "/about" 
