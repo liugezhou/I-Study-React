@@ -8,7 +8,8 @@
 > node版本 v12.16.1   
 > 切换镜像源: npm config set registry https://registry.npm.taobao.org   
 > 使用npx create-react-app react-staging构建项目。  
-### 仓库代码branch说明与简要笔记
+
+#### 仓库代码branch说明与简要笔记
 #### 001--脚手架文件精简后代码演示    
 
 ##### 002--TodoList--demo
@@ -59,5 +60,36 @@ module.exports = function(app){
 
 ##### 004--Github搜索案例
 > 后端服务使用 react-http中的server.js服务。  
-> 本实例主要是练习axios的请求以及父子组件传值、三元运算符使用等。 
+> 本实例主要是练习axios的请求以及父子组件传值、三元运算符使用等。   
 > 通过输入 Github的英文名称进行User的头像搜索、点击跳转。 
+
+##### 005--发布订阅消息   
+> 本分支通过Github搜索案例使用pubsub-js这个库，学习发布订阅消息。   
+> 流程如下：    
+> npm i -S pubsub-js    
+> 订阅消息核心代码：  
+```
+componentDidMount(){
+  this.token = PubSub.subscribe('github',(_,stateObj)=>{
+    this.setState(stateObj)
+  })
+}
+componentWillUnmount(){
+  PubSub.unsubscribe(this.token)
+}
+```
+> 发布消息核心代码：    
+```
+search = ()=>{
+  const {keyWordElement:{value:keyWord}} = this
+  this.props.updateAppState({isFirst:false,isLoading:true})
+  axios.get(`/api1/search/users?q=${keyWord}`).then(
+    response => {
+      this.props.updateAppState({isLoading:false,users:response.data.items})
+    },
+    error => {
+      this.props.updateAppState({isLoading:false,err:error.message})
+    }
+  )
+}
+```
