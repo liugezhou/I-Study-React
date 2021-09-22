@@ -93,3 +93,7 @@ search = ()=>{
   )
 }
 ```
+
+##### 006--扩展：fetch请求
+> + xhr :jQuery -- 写法简单、回调地狱。 axios -- Promise    
+> + fetch: 内置原生函数、Promise、不使用XMLHttpRequest：关注分离思想、兼容性不好。
