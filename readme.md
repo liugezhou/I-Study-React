@@ -137,8 +137,23 @@ search = ()=>{
 > + 在public/index.html中引入样式不写 ./  写%PUBLIC_URL%/【只有React认PUBLICK_URL】   
 > + 使用HashRouter模式(少见)。
 
-> React路由默认是模糊匹配，实现精准匹配[不推荐]：<Route exect/> 
+> React路由默认是模糊匹配，实现精准匹配[不推荐]：<Route exect/>
 > 精准匹配开启会导致无法继续匹配二级路由。
 
 > 路由重定向：引用react-router-dom的组件Redirect  
-> 一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由--to
+> 一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由--使用to
+
+##### 009--嵌套路由 | 向组件传递数据三种方式
+> 也叫二级路由  
+> + 注册子路由时要写上父路由的path值。  
+> + 路由的匹配是按照注册路由的顺序进行的。  
+
+> 传递参数的三种方式：  
+> + 传递params参数 :路由链接--传递参数时直接携带参数值，注册路由-接收使用:name/:id的方式。组件中使用this.props.match.params.   
+> + 传递search参数：路由链接--以 urlencoded[参数格式为a=1&b=2]格式携带参数，注册路由:正常注册。组件中使用this.props.location.search解析   
+> + 传递state参数：路由链接 --以to={pathname:'/home',state:'{参数对象}'}携带参数，注册路由：正常注册。组件中使用this.props.location.state解析参数，刷新也可以保留参数   
+
+> 知识点：push与replace 
+> 默认开启push模式，开启replace模式需要声明：replace  
+> 本分支下 src/pages/Home/Message/index.jsx中的： 
+> <Link replace to={{pathname:'/home/message/detail',state:{id:msgObj.id,title:msgObj.title}}}>{msgObj.title}</Link>
