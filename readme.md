@@ -157,3 +157,17 @@ search = ()=>{
 > 默认开启push模式，开启replace模式需要声明：replace  
 > 本分支下 src/pages/Home/Message/index.jsx中的： 
 > <Link replace to={{pathname:'/home/message/detail',state:{id:msgObj.id,title:msgObj.title}}}>{msgObj.title}</Link>
+
+##### 010--编程式路由导航 | withRouter的使用
+>  this.props.history.push(`path`)  
+> + pathg1:`/home/message/detail/${id}/${title}`  
+> + path2:`/home/message/detail/id=${id}&title=${title}`  
+> + path3:'/home/message/detail',{id,title} 
+>  this.props.history.goBack()  
+>  this.props.history.goForard()  
+>  this.props.history.go()
+
+> 一般组件变路由组件,在Header组件中使用：：  
+> export default withRouter(Header)   
+> + withRouter可以加工一般组件，让一般组件具备路由组件所特有的API
+> + withRouter的返回值是一个新组件
