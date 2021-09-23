@@ -103,7 +103,11 @@ search = ()=>{
 > + 需要使用：yarn add react-router-dom   
 > + `<BrowserRouter><App/></BrowserRouter>`   
 > + `<HashRouter><App/></HashRouter>`   
-> + `<Link to="/home"> || <NavLink activeClassName="liugezhou"> || <MyNavlink “标签题内容是一个特殊的属性”/>` 
+> + `<Link to="/home"> || <NavLink activeClassName="liugezhou"> || <MyNavlink “标签题内容是一个特殊的属性”/>`   
+> NaviLink可以实现路由链接的高亮，通过activeCalssName指定样式名   
+> 标签体内容是一个特殊的标签属性  
+> 通过this.props.children可以获取标签体内容
+
 > + `<Route path="/about" component={About} />`
 
 > 路由组件与一般组件  
@@ -124,3 +128,17 @@ search = ()=>{
 >   params: {}  
 >   path: "/about"  
 >   url: "/about" 
+
+##### 008--Switch选择路由 ｜ 样式丢失问题 ｜ 精准匹配 ｜ 路由重定向
+> Switch组件引自 react-router-dom,将<Route>包围其中，可以提高路由匹配效率：单一匹配，匹配好不会继续匹配。   
+
+> 关于样式丢失
+> + 在public/index.html中引入样式不写 ./  写/  
+> + 在public/index.html中引入样式不写 ./  写%PUBLIC_URL%/【只有React认PUBLICK_URL】   
+> + 使用HashRouter模式(少见)。
+
+> React路由默认是模糊匹配，实现精准匹配[不推荐]：<Route exect/> 
+> 精准匹配开启会导致无法继续匹配二级路由。
+
+> 路由重定向：引用react-router-dom的组件Redirect  
+> 一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由--to
