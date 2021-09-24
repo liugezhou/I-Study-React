@@ -171,3 +171,8 @@ search = ()=>{
 > export default withRouter(Header)   
 > + withRouter可以加工一般组件，让一般组件具备路由组件所特有的API
 > + withRouter的返回值是一个新组件
+
+> BrowserHistory和HashHistory的区别： 
+> + 底层原理不一样：BrowserHistory使用的是H5的history API，不兼容IE9及以下版本。HashHistory使用的的是URL的哈希值。    
+> + path表现形式不一样。  
+> + 刷新后对路由state参数的影响：BroswerHistory没有影响，HashHistory刷新后会导致路由state参数丢失。  
