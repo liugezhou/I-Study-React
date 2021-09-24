@@ -176,3 +176,14 @@ search = ()=>{
 > + 底层原理不一样：BrowserHistory使用的是H5的history API，不兼容IE9及以下版本。HashHistory使用的的是URL的哈希值。    
 > + path表现形式不一样。  
 > + 刷新后对路由state参数的影响：BroswerHistory没有影响，HashHistory刷新后会导致路由state参数丢失。  
+
+
+##### 011--UI组件库ant-design 
+> antd-适用于PC管理系统。   
+
+> 按需引入样式：对 create-react-app 进行默认配置.   
+> + yarn add @craco/craco   
+> + package.json -- "start": "craco start",……   
+> + 根目录下：touch craco.config.js [配置具体的修改规则]  
+> + yarn add craco-less 
+> + 移除App.jsx的样式,引入App.less:【@import '~antd/dist/antd.less'】 
