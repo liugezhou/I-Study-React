@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from './constant';
+import { INCREMENT, DECREMENT } from '../constant';
 export default function reducer(preState, action) {
   const { type, data } = action;
   switch (type) {

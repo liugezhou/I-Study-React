@@ -48,3 +48,13 @@
 > 07_src_react_优化2_手写练习  
 > 通过06的代码，删除src下全部代码，手写一遍，这个下面可以作为下次操作的文件：任意练习。 
 
+> 08_src_react_数据共享   
+> + 定义一个Person容器组件，和Count组件通过redux共享数据。  
+> + 为Person组件编写：reducer、action，配置constant常量。   
+> + 重点：Person的reducer和Count的reducer要使用combineReducers进行合并，合并后的总状态是一个对象。  
+> + 交给store的是总的reducer，需要注意在组件中取出状态的时候，要"取到位"！
+> 
+> 纯函数  
+> + 一类特别的函数：只要是同样的输入(实参),必定得到同样的输出。 
+> + 遵守的约束：不得改写参数数据、不会产生任何副作用(不能发生网络请求，输入和输出设备)、不能调用Date.now()或者Math.rendom()等不纯的方法。 
+> + redux的reducer必须是一个纯函数！  

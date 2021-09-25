@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 import { INCREMENT, DECREMENT,AINCREMENT } from '../../redux/constant';
-import { add, substract,aysncAdd } from '../../redux/count_actions';
+import { add, substract,aysncAdd } from '../../redux/actions/count';
 class CountUI extends Component {
   increment = () => {
     const { value } = this.selectNumber;
@@ -26,7 +26,8 @@ class CountUI extends Component {
   render() {
     return (
       <div className="main">
-        <h1>当前求和为：{this.props.count}</h1>
+        <h2>Count组件</h2>
+        <h3>当前求和为：{this.props.count}，下方组件总人数为:{this.props.persons.length}</h3>
         <div className="content">
           <select ref={(c) => (this.selectNumber = c)}>
             <option value="1">1</option>
@@ -39,6 +40,7 @@ class CountUI extends Component {
           <button onClick={this.decrement}>-</button>
           <button onClick={this.incrementIdOdd}>当前求和为基数 + </button>
           <button onClick={this.incrementAsync}>异步+</button>
+          
         </div>
       </div>
     );
@@ -46,7 +48,7 @@ class CountUI extends Component {
 }
 
 export default connect(
-  state => ({ count: state }), 
+  state => ({ count: state.countData,persons:state.personsData }), 
   {
     [INCREMENT]: add,
     [DECREMENT]: substract,
