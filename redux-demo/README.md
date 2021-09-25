@@ -3,7 +3,7 @@
 > + imn: import 'module' 
 > + imp: import moduleName from 'module'  
 > + imd:import {  } from 'module'   
-> + rcc：初始化一个jsx    
+> + rcc：初始化一个jsx[UI组件]    
 
 ### redux
 >  01_src_纯react版  
@@ -25,3 +25,13 @@
 > + 何时需要异步action：想要对状态进行操作，但是具体的数据靠异步任务返回。  
 > + 具体编码：yarn add redux-thunk,在store中引入thunk，并将中间件applyMiddleware从redux中引入，将thunk作为applyMiddleware的参数，合并后的函数以第二个参数的形式传递给creatStore.  
 > + 异步action不是必须要写的，完全可以组件自身等待异步任务的结果再去分发同步action。
+
+> 04_src_react_redux的基本使用
+> + react-redux库是react官方为更方便的使编码程序可以写redux相关操作而出品的。  
+> + react-redux将组件分为两类：容器组件和UI组件   
+> + UI组件外侧都应包裹一个容器组件，他们是父子关系，其中容器组件才是真正和redux打交道的，这里面可以随意使用redux的api，而UI组件不能使用任何redux中的api。   
+> + 容器组件会传给UI组件：1)redux中保存的状态.2)用作操作状态的方法,传递通过props传递。  
+
+> + 创建一个容器组件，使用react-redux中的connect函数。格式为connect(a,b)(UI)  
+> + connect函数，分别需要传入两个参数：a:mapStateToProps,b:mapDispatchToProps,UI为引入的UI组件。 
+> + 容器组件传给UI组件中的store不是在容器组件中直接引入的，而是在标签上通过props传递进去的：App.jsx中：`<Count store={store} />`  
