@@ -35,3 +35,9 @@
 > + 创建一个容器组件，使用react-redux中的connect函数。格式为connect(a,b)(UI)  
 > + connect函数，分别需要传入两个参数：a:mapStateToProps,b:mapDispatchToProps,UI为引入的UI组件。 
 > + 容器组件传给UI组件中的store不是在容器组件中直接引入的，而是在标签上通过props传递进去的：App.jsx中：`<Count store={store} />`  
+
+> 05_src_react_优化1   
+> + 所有注释去掉
+> + mapDispatchToProps也可以是一个对象(react-redux可以自动dispatch)--见代码优化    
+> + store.subscribe可以在index.js中删除，这是因为react-redux在调用connect方法[容器组件中]的时候，就已经默认拥有了检测redux中状态的改变--重新render的作用。  
+> + App.jsx中 `<Count store={store} />`,如果有多个组件，必须一遍又一遍的这样声明，因此可以直接在入口文件：index.js中使用reac-redux的Provider组件：直接在Provider组件中传入store   

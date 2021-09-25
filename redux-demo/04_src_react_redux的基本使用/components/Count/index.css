@@ -1,0 +1,16 @@
+.main {
+  width: 100%;
+  text-align: center;
+}
+.content {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 40%;
+}
+button {
+  padding: 5px 15px;
+  color: white;
+  background-color: #e34d64;
+  border: 1px solid #e34d64;
+}
