@@ -7,12 +7,16 @@
 ### react-staging
 > node版本 v12.16.1   
 > 切换镜像源: npm config set registry https://registry.npm.taobao.org   
-> 使用npx create-react-app react-staging构建项目。  
+> 使用npx create-react-app react-staging构建项目。    
+> 通过react脚手架新建项目，一些基本知识。 
 
-#### 仓库代码branch说明与简要笔记
+### redux-demo  
+> 通过create-react-app创建项目，关于状态管理redux的相关内容。
+
+### 仓库代码branch说明与简要笔记
 #### 001--脚手架文件精简后代码演示    
 
-##### 002--TodoList--demo
+#### 002--TodoList--demo
 > 相关知识点：  
 > + 1.拆分组件、实现静态组件，注意：className、style的写法  
 > + 2.动态初始化列表，如何确定将数据放在哪个组件的state中 
@@ -24,7 +28,7 @@
 > + 4.注意 defaultChecked和checked的区别，defaultChecked只执行初始化的一次，checked需要有onChange事件。类似的还有defaultValue和value 
 > + 5.状态在哪里，状态操作的方法就在哪里。
 
-##### 003--React-ajax  
+#### 003--React-ajax  
 > + 方法一  
 > 在package.json中追加一下配置： "proxy":"http://localhost:5000"     
 > 
@@ -58,12 +62,12 @@ module.exports = function(app){
 }
 ```
 
-##### 004--Github搜索案例
+#### 004--Github搜索案例
 > 后端服务使用 react-http中的server.js服务。  
 > 本实例主要是练习axios的请求以及父子组件传值、三元运算符使用等。   
 > 通过输入 Github的英文名称进行User的头像搜索、点击跳转。 
 
-##### 005--发布订阅消息   
+#### 005--发布订阅消息   
 > 本分支通过Github搜索案例使用pubsub-js这个库，学习发布订阅消息。   
 > 流程如下：    
 > npm i -S pubsub-js    
@@ -94,11 +98,11 @@ search = ()=>{
 }
 ```
 
-##### 006--扩展：fetch请求
+#### 006--扩展：fetch请求
 > + xhr :jQuery -- 写法简单、回调地狱。 axios -- Promise    
 > + fetch: 内置原生函数、Promise、不使用XMLHttpRequest：关注分离思想、兼容性不好。
 
-##### 007--React路由
+#### 007--React路由
 > 路由分类--后端路由[key:value(function)]、前端路由[key:value(component)]。  
 > + 需要使用：yarn add react-router-dom   
 > + `<BrowserRouter><App/></BrowserRouter>`   
@@ -129,7 +133,7 @@ search = ()=>{
 >   path: "/about"  
 >   url: "/about" 
 
-##### 008--Switch选择路由 ｜ 样式丢失问题 ｜ 精准匹配 ｜ 路由重定向
+#### 008--Switch选择路由 ｜ 样式丢失问题 ｜ 精准匹配 ｜ 路由重定向
 > Switch组件引自 react-router-dom,将<Route>包围其中，可以提高路由匹配效率：单一匹配，匹配好不会继续匹配。   
 
 > 关于样式丢失
@@ -143,7 +147,7 @@ search = ()=>{
 > 路由重定向：引用react-router-dom的组件Redirect  
 > 一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由--使用to
 
-##### 009--嵌套路由 | 向组件传递数据三种方式
+#### 009--嵌套路由 | 向组件传递数据三种方式
 > 也叫二级路由  
 > + 注册子路由时要写上父路由的path值。  
 > + 路由的匹配是按照注册路由的顺序进行的。  
@@ -158,7 +162,7 @@ search = ()=>{
 > 本分支下 src/pages/Home/Message/index.jsx中的： 
 > <Link replace to={{pathname:'/home/message/detail',state:{id:msgObj.id,title:msgObj.title}}}>{msgObj.title}</Link>
 
-##### 010--编程式路由导航 | withRouter的使用
+#### 010--编程式路由导航 | withRouter的使用
 >  this.props.history.push(`path`)  
 > + pathg1:`/home/message/detail/${id}/${title}`  
 > + path2:`/home/message/detail/id=${id}&title=${title}`  
@@ -178,7 +182,7 @@ search = ()=>{
 > + 刷新后对路由state参数的影响：BroswerHistory没有影响，HashHistory刷新后会导致路由state参数丢失。  
 
 
-##### 011--UI组件库ant-design 
+#### 011--UI组件库ant-design 
 > antd-适用于PC管理系统。   
 
 > 按需引入样式：对 create-react-app 进行默认配置.   
@@ -187,3 +191,16 @@ search = ()=>{
 > + 根目录下：touch craco.config.js [配置具体的修改规则]  
 > + yarn add craco-less 
 > + 移除App.jsx的样式,引入App.less:【@import '~antd/dist/antd.less'】 
+
+#### 012--Redux介绍/项目初始化
+> + redux是一个专门用于做状态管理的JS库(不是react插件库)  
+> + 可以用在react、angular、vue等项目中，但基本与react配合使用。  
+> + 作用：集中管理react应用中多个组件共享的状态。   
+> + 总体原则：能不用就不用，如果不用比较吃了才考虑使用。  
+
+> 三个核心概念  
+> + action:两个属性type和data。type：值唯一、类型为字符串、必要属性。data：类型为任意，可选属性。 
+> + reducer:用于初始化状态、加工状态。加工时根据旧的state和action，产生新的state纯函数。  
+> + store:将state、action、reducer联系在一起的对象。
+
+> 相关笔记见：redux-demo内readme。
