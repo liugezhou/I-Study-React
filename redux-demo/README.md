@@ -26,7 +26,7 @@
 > + 具体编码：yarn add redux-thunk,在store中引入thunk，并将中间件applyMiddleware从redux中引入，将thunk作为applyMiddleware的参数，合并后的函数以第二个参数的形式传递给creatStore.  
 > + 异步action不是必须要写的，完全可以组件自身等待异步任务的结果再去分发同步action。
 
-> 04_src_react_redux的基本使用
+> 04_src_react_redux的基本使用  
 > + react-redux库是react官方为更方便的使编码程序可以写redux相关操作而出品的。  
 > + react-redux将组件分为两类：容器组件和UI组件   
 > + UI组件外侧都应包裹一个容器组件，他们是父子关系，其中容器组件才是真正和redux打交道的，这里面可以随意使用redux的api，而UI组件不能使用任何redux中的api。   
@@ -42,5 +42,9 @@
 > + store.subscribe可以在index.js中删除，这是因为react-redux在调用connect方法[容器组件中]的时候，就已经默认拥有了检测redux中状态的改变--重新render的作用。  
 > + App.jsx中 `<Count store={store} />`,如果有多个组件，必须一遍又一遍的这样声明，因此可以直接在入口文件：index.js中使用reac-redux的Provider组件：直接在Provider组件中传入store   
 
-> 06_src_react_优化2_文件整合  
+> 06_src_react_优化2_文件整合   
 > 文件层面的优化：将容器组件与UI组件整合成一个文件。详细整合见代码。  
+
+> 07_src_react_优化2_手写练习  
+> 通过06的代码，删除src下全部代码，手写一遍，这个下面可以作为下次操作的文件：任意练习。 
+
