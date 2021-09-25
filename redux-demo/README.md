@@ -58,3 +58,8 @@
 > + 一类特别的函数：只要是同样的输入(实参),必定得到同样的输出。 
 > + 遵守的约束：不得改写参数数据、不会产生任何副作用(不能发生网络请求，输入和输出设备)、不能调用Date.now()或者Math.rendom()等不纯的方法。 
 > + redux的reducer必须是一个纯函数！  
+
+> src：最终版   
+> + redux-devtools:浏览器安装之后，还需要在代码层面：yarn add redux-devtools-extension,store中引入，在createStore方法的第二个参数传入     
+> + 所有变量名字要规范，尽量触发对象的简写形式。  
+> + reducers文件中，编写index.js专门用于汇总并暴露所有的reducer   
