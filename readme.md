@@ -11,7 +11,13 @@
 > 通过react脚手架新建项目，一些基本知识。 
 
 ### redux-demo  
-> 通过create-react-app创建项目，关于状态管理redux的相关内容。
+> 通过create-react-app创建项目，关于状态管理redux、react-redux等的相关内容。 
+> 具体内容详见 branch012相关内容。  
+
+
+### react-extension 
+> react相关扩展内容，代码示例、笔记等内容存放于此。
+
 
 ### 仓库代码branch说明与简要笔记
 #### 001--脚手架文件精简后代码演示    
@@ -203,4 +209,13 @@ search = ()=>{
 > + reducer:用于初始化状态、加工状态。加工时根据旧的state和action，产生新的state纯函数。  
 > + store:将state、action、reducer联系在一起的对象。
 
-> 相关笔记见：redux-demo内readme。
+> 这里补充一个打包上线相关的一个小知识点：  
+> 打包后使用serve命令开启服务器运行：   
+> + npm run build 
+> + serve可以指定某一个文件夹快速开启一个服务器。全局安装serve库：npm i -g serve  
+> + 如果想以build下目录为服务器内容，直接在build上一层目录下：serve build,一台服务器瞬间开启。
+
+> 相关基础知识、代码示例等笔记见：redux-demo内readme。
+
+#### 013--react-extension扩展相关
+> 相关内容详见react-extesion目录
